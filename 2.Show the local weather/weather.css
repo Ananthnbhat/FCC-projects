@@ -1,0 +1,44 @@
+body {
+    background-color: rgb(44, 62, 80);
+}
+
+.header {
+    color: white;
+    text-align: center;
+    font-family: 'Fertigo';
+}
+
+.body a {
+    color: white;
+    text-decoration: none;
+}
+
+.body {
+    text-align: center;
+    border: 1px solid white;
+    border-radius: 8px;
+    padding: 30px;
+    color: white;
+    text-decoration: none;
+    margin: 30px 200px;
+    background-color: black;
+}
+
+.body a:hover {
+    color: lightskyblue;
+    text-decoration: none
+}
+
+.footer {
+  text-align:center;
+  color:black;
+  font-family:'Fertigo';
+  font-weight:bold;
+}
+.footer a{
+  color:rgb(44,62,80);
+}
+.footer a:hover{
+  text-decoration:none;
+  
+}

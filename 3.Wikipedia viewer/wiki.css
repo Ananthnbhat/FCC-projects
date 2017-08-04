@@ -1,0 +1,25 @@
+body {
+    text-align: center;
+    font-family: 'Aladin', Times New Roman;
+    letter-spacing: 1.5px;
+    /*background-image:url("https://upload.wikimedia.org/wikipedia/en/thumb/8/80/Wikipedia-logo-v2.svg/1122px-Wikipedia-logo-v2.svg.png");
+  background-repeat:no-repeat;*/
+}
+
+
+/*.rem a {
+  
+    position: relative;
+    display: inline-block;
+    padding: 15px 25px;
+    background-color: orange;
+ 
+    background-image: linear-gradient(darkorange, #ffc299);
+ 
+    text-decoration: none;
+    
+    color: #FFFC2E;
+    font-size: 25px;
+    font-family: sans-serif;
+    font-weight: 100;
+}

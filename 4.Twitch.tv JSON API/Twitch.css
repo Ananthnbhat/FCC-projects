@@ -1,0 +1,25 @@
+body {
+    background-color: black;
+    text-align: center;
+    font-family: 'Aladin';
+    padding: 30px;
+}
+
+#container {
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 7px;
+    padding: 30px;
+    margin-left: 250px;
+    margin-right: 250px;
+    margin-top: 10px;
+}
+
+#container a:hover {
+    text-decoration: none;
+    color: black;
+}
+
+.b {
+    padding-top: 15px;
+}

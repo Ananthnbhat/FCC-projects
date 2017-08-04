@@ -1,0 +1,128 @@
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Quotes by great people</title>
+    <meta charset="UTF-8">
+    <style>
+        body {
+            background-color: rgb(44, 62, 70);
+        }
+        
+        #container {
+            background-color: white;
+            border: 1px solid black;
+            border-radius: 7px;
+            padding: 10px;
+            margin-left: 250px;
+            margin-right: 250px;
+            margin-top: 125px;
+        }
+        
+        .button {
+            background-color: white;
+            -moz-border-radius: 28px;
+            -webkit-border-radius: 28px;
+            border-radius: 7px;
+            border: 1px solid rgb(44, 62, 80);
+            display: inline-block;
+            cursor: pointer;
+            color: black;
+            font-family: Arial;
+            font-size: 17px;
+            padding: 10px 15px;
+            text-decoration: none;
+            text-shadow: 0px 1px 0px #2f6627;
+            margin-left: 505px;
+        }
+        
+        .button:hover {
+            background-color: rgb(44, 62, 80);
+            color: white
+        }
+        
+        .button:active {
+            position: relative;
+            top: 1px;
+        }
+        
+        .heading {
+            text-align: center;
+            padding-top: 5px;
+            font-size: 30px;
+            /*font-family: ;*/
+            color: rgb(44, 62, 80);
+        }
+        
+        #buttoncontainer {
+            position: relative;
+            padding-top: 200px;
+            padding-bottom: 30px;
+            /* text-align: center;*/
+        }
+        
+        .share {
+            /* float: left;*/
+            padding: 10px;
+            margin-left: 30px;
+        }
+        
+        .fa-facebook {
+            color: rgb(44, 62, 80);
+            font-size: 30px;
+        }
+        
+        .fa-facebook:hover {
+            color: #3b5998;
+        }
+        
+        .fa-twitter {
+            color: rgb(44, 62, 80);
+            font-size: 30px;
+        }
+        
+        .fa-twitter:hover {
+            color: #55acee;
+        }
+        /*.icons {
+            margin-left: 0px;
+        }*/
+        
+        #quoteC {
+            width: 75%;
+            background: #fff;
+            padding: 10px;
+            margin: 30px auto;
+            text-align: center;
+            height: 70px;
+            color: black;
+        }
+        
+        #author {
+            font-style: italic;
+            font-weight: 600;
+            text-align: center;
+            color: black;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div id="container">
+        <h2 class="heading">Quotes that matter</h2>
+        <div id="quoteC">
+            <p></p>
+            <p id="author"></p>
+        </div>
+        <div id="buttoncontainer">
+
+            <a href="" class="share" id="fb" title="Share this quote!"><i class="fa fa-facebook" aria-hidden="true" ></i></a>
+            <a href="" class="share" id="tw" title="Tweet this quote!"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+
+            <button id="quoteButton" class="button">New Quote</button>
+        </div>
+    </div>
+</body>
+
+</html>
