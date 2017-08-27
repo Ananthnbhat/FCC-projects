@@ -1,0 +1,3 @@
+Go through all the projects
+change the quotes in the random quote generator and in the same project, prepopulate the twitter share 
+change the background images according to the weather. 

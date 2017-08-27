@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="jc.css" rel="stylesheet">
+    <script src="jc.js"></script>
+</head>
+
+<body>
+    <h1 style="padding-top:20px">Javascript calculator</h1>
+
+    <div id="container">
+        <h5 style="padding:10px">Javascript calculator</h5>
+        <div id="display">
+            <p id="disp"></p>
+        </div>
+        <div id="buttons">
+
+            <div class="row">
+                <button value='7' onclick="myFunc(this)">7</button>
+                <button value='8' onclick="myFunc(this)">8</button>
+                <button value='9' onclick="myFunc(this)">9</button>
+                <button value='/' onclick="myFunc(this)">&divide;</button>
+            </div>
+
+            <div class="row">
+                <button value='4' onclick="myFunc(this)">4</button>
+                <button value='5' onclick="myFunc(this)">5</button>
+                <button value='6' onclick="myFunc(this)">6</button>
+                <button value='*' onclick="myFunc(this)">x</button>
+            </div>
+
+            <div class="row">
+                <button value='1' onclick="myFunc(this)">1</button>
+                <button value='2' onclick="myFunc(this)">2</button>
+                <button value='3' onclick="myFunc(this)">3</button>
+                <button value='-' onclick="myFunc(this)">-</button>
+                <!--<button class='invisible'>N</button>-->
+            </div>
+            <div class="row">
+                <button id='zeroButton' value='0' onclick="myFunc(this)">0</button>
+                <button value='.' onclick="myFunc(this)">.</button>
+                <button id='equalButton' value='=' onclick="myFunc(this)">=</button>
+                <button value='+' onclick="myFunc(this)">+</button>
+            </div>
+            <div class="row">
+                <button class='white' value='c' id='cbut'>C</button>
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+</body>
+
+</html>
