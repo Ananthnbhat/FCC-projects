@@ -14,8 +14,8 @@
 }
 
 #editor {
-  background-color: yellow;
-  /* margin: 0 5px 0 5px; */
+  background-color: rgb(235, 235, 235);
+  margin: 0 2% 0 2%;
   min-width: 400px;
   width: 40%;
   height: 400px;
@@ -23,12 +23,18 @@
 }
 
 #previewer {
-  background-color: rgb(160, 214, 13);
+  background-color: rgb(255, 255, 255);
   min-width: 400px;
-  /* margin: 0 2% 0 2%; */
-  width: 60%;
+  margin: 0 2% 0 2%;
+  width: 50%;
   height: 300px;
   border: 1px solid #1d5757;
+}
+
+#editor-area {
+  width: 100%;
+  height: 100%;
+  padding: 20px;
 }
 
 /* .App {
