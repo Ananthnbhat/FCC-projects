@@ -13,7 +13,7 @@
   flex-direction: row;
 }
 
-#editor {
+#editor-area {
   background-color: rgb(235, 235, 235);
   margin: 0 2% 0 2%;
   min-width: 400px;
@@ -22,19 +22,34 @@
   border: 1px solid #1d5757;
 }
 
-#previewer {
+#editor-area>label {
+  text-align: center;
+  display: block;
+  width: 100%;
+}
+
+#preview {
   background-color: rgb(255, 255, 255);
   min-width: 400px;
   margin: 0 2% 0 2%;
   width: 50%;
   height: 300px;
   border: 1px solid #1d5757;
+  display: flex;
+  flex-direction: column;
 }
 
-#editor-area {
+#preview>label {
+  background-color: rgb(235, 235, 235);
+  border-bottom: 1px solid black;
+  text-align: center;
+}
+
+#editor {
   width: 100%;
   height: 100%;
   padding: 20px;
+  resize: vertical;
 }
 
 /* .App {
