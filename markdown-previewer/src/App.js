@@ -1,15 +1,11 @@
 import './App.scss';
 import { useState } from "react";
 import marked from 'marked';
-import DOMPurify from 'dompurify';
 
 function App() {
 
   const [editorContent, setEditorConent] = useState(placeholder)
 
-  const handleChange = event => {
-    setEditorConent(event.target.value)
-  }
 
   // INSERTS target="_blank" INTO HREF TAGS (required for Codepen links)
   const renderer = new marked.Renderer();
@@ -18,15 +14,15 @@ function App() {
   };
 
   const getMarkdownText = () => {
-    var rawMarkup = marked(DOMPurify.sanitize(editorContent, { USE_PROFILES: { html: true } }));
-    return { __html: rawMarkup };
+    // var rawMarkup = marked(editorContent, { renderer: renderer });
+    return { __html: marked(editorContent, { renderer: renderer }) };
   }
 
   return (
     <div id="wrapper">
       <div id="editor-area">
         <label>Editor</label>
-        <textarea id="editor" value={editorContent} onChange={handleChange}></textarea>
+        <textarea id="editor" value={editorContent} onChange={(event) => setEditorConent(event.target.value)}></textarea>
       </div>
       <div id="preview-area">
         <label>Preview</label>
@@ -58,7 +54,7 @@ Or _italic_.
 Or... wait for it... **_both!_**
 And feel free to go crazy ~~crossing stuff out~~.
 
-There's also [links](https://www.freecodecamp.org), and
+There's also [codepen link](https://codepen.io/ananthnbhat/pen/JjNQJyQ), and
 > Block Quotes!
 
 And if you want to get really crazy, even tables:
@@ -78,6 +74,7 @@ And here. | Okay. | I think we get it.
 1. Use just 1s if you want!
 1. And last but not least, let's not forget embedded images:
 
+![placeholder image](https://via.placeholder.com/150)
 
 `;
 
