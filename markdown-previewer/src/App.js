@@ -1,5 +1,7 @@
-import './App.css';
+import './App.scss';
 import { useState } from "react";
+import marked from 'marked';
+import DOMPurify from 'dompurify';
 
 function App() {
 
@@ -8,15 +10,27 @@ function App() {
   const handleChange = event => {
     setEditorConent(event.target.value)
   }
+
+  // INSERTS target="_blank" INTO HREF TAGS (required for Codepen links)
+  const renderer = new marked.Renderer();
+  renderer.link = function (href, title, text) {
+    return `<a target="_blank" href="${href}">${text}</a>`;
+  };
+
+  const getMarkdownText = () => {
+    var rawMarkup = marked(DOMPurify.sanitize(editorContent, { USE_PROFILES: { html: true } }));
+    return { __html: rawMarkup };
+  }
+
   return (
     <div id="wrapper">
       <div id="editor-area">
         <label>Editor</label>
         <textarea id="editor" value={editorContent} onChange={handleChange}></textarea>
       </div>
-      <div id="preview">
+      <div id="preview-area">
         <label>Preview</label>
-        <div>{editorContent}</div>
+        <div id="preview" dangerouslySetInnerHTML={getMarkdownText()}></div>
       </div>
     </div>
   );
@@ -64,7 +78,7 @@ And here. | Okay. | I think we get it.
 1. Use just 1s if you want!
 1. And last but not least, let's not forget embedded images:
 
-![freeCodeCamp Logo](https://cdn.freecodecamp.org/testable-projects-fcc/images/fcc_secondary.svg)
+
 `;
 
 export default App;
