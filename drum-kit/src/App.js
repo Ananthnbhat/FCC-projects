@@ -78,7 +78,7 @@ function App() {
 
 export default App;
 
-const DrumKit = (props) => {
+const DrumKit = props => {
 
   useEffect(() => {
     document.addEventListener('keydown', keyPress)
@@ -92,11 +92,13 @@ const DrumKit = (props) => {
     playSound(bankOne.some(element => element.keyCode === keyCode) ? bankOne.find(element => element.keyCode === keyCode) : null)
   }
 
-  const playSound = (obj) => {
+  const playSound = obj => {
     if (obj != null) {
       props.inst(obj.id)
       const audio = document.getElementById(obj.keyTrigger)
       audio.play()
+
+      pressAnimation(obj);
     }
   }
   return (
@@ -114,4 +116,13 @@ const DrumKit = (props) => {
       );
     })
   )
+}
+
+const pressAnimation = obj => {
+  const div = document.getElementById(obj.id);
+  div.style.boxShadow = 'none';
+  setTimeout(() => {
+    if (div.style.boxShadow === 'none')
+      div.style.boxShadow = '3px 5px 4px #ccc';
+  }, 100);
 }
