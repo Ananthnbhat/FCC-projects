@@ -71,7 +71,7 @@ function App() {
       <div id="drum-wrapper">
         <DrumKit inst={showInstrument} />
       </div>
-      <div id="display">Instrument: {inst}</div>
+      <div id="display">Instrument: &nbsp; <strong>{inst}</strong></div>
     </div>
   )
 }
