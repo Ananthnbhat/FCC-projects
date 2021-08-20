@@ -1,0 +1,11 @@
+#root {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+#drum-machine {
+  .drum-pad {
+    cursor: pointer;
+  }
+}
