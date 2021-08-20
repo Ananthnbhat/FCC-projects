@@ -1,11 +1,72 @@
+@mixin display-flex($w, $v, $s) {
+  display: $w;
+  justify-content: $v;
+  align-items: $s;
+}
+
 #root {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  @include display-flex(flex, center, center);
   height: 100vh;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 #drum-machine {
-  .drum-pad {
-    cursor: pointer;
+  @include display-flex(flex, space-between, center);
+  width: 660px;
+  padding: 50px;
+  background-color: #fcf1e4;
+  border: 3px solid #eb7f78;
+  border-radius: 5px;
+
+  #drum-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    width: 50%;
+
+    .drum-pad {
+      @include display-flex(flex, center, center);
+      cursor: pointer;
+      flex-basis: 29%;
+      font-size: 1.5rem;
+      font-weight: 600;
+      height: 80px;
+      background-color: #ffb7b2;
+      border-radius: 5px;
+      margin: 5px;
+      box-shadow: 0 5px 5px #ccc;
+      text-shadow: 4px 4px 0px #d5d5d5, 4px 4px 0px rgba(0, 0, 0, 0.2);
+
+      &:hover {
+        text-shadow: none;
+      }
+    }
+  }
+
+  #display {
+    @include display-flex(flex, center, center);
+    background-color: white;
+    flex: 1;
+    height: 50px;
+    border-radius: 5px;
+    box-shadow: 0 5px 5px #ccc;
+    font-size: larger;
+  }
+}
+
+@media screen and (max-width: 850px) {
+  #drum-machine {
+    width: 350px;
+    flex-direction: column;
+
+    #drum-wrapper {
+      width: 100%;
+
+      .drum-pad {
+        flex-basis: 30.4%;
+      }
+    }
+    #display {
+      height: 50px;
+      width: 100%;
+    }
   }
 }

@@ -68,10 +68,10 @@ function App() {
 
   return (
     <div id="drum-machine">
-      <>
+      <div id="drum-wrapper">
         <DrumKit inst={showInstrument} />
-      </>
-      <div id="display">{inst}</div>
+      </div>
+      <div id="display">Instrument: {inst}</div>
     </div>
   )
 }
@@ -102,9 +102,14 @@ const DrumKit = (props) => {
   return (
     bankOne.map(item => {
       return (
-        <div onClick={() => playSound(item)} data-key={item.keyCode} id={item.id} className="drum-pad" key={item.keyCode}>
+        <div
+          onClick={() => playSound(item)}
+          id={item.id}
+          className="drum-pad"
+          key={item.keyCode}
+        >
           <kbd>{item.keyTrigger}</kbd>
-          <audio data-key={item.keyCode} src={item.url} className="clip" id={item.keyTrigger}></audio>
+          <audio src={item.url} className="clip" id={item.keyTrigger}></audio>
         </div>
       );
     })
