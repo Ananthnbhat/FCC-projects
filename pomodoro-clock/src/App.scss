@@ -1,0 +1,20 @@
+#container {
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  #title {
+    display: block;
+  }
+
+  .config {
+    display: inline-block;
+    text-align: center;
+  }
+
+  #timer {
+    text-align: center;
+  }
+}
