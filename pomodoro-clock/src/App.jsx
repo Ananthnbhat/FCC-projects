@@ -1,5 +1,5 @@
 import "./App.scss";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
 const SESSION = "SESSION";
 const BREAK = "BREAK";
@@ -114,6 +114,7 @@ const Timer = (props) => {
   const [sessionSec, setSessionSec] = useState(0);
   const [breakMin, setBreakMin] = useState(props.breakLength);
   const [breakSec, setBreakSec] = useState(0);
+  const beepAudio = useRef(null);
 
   const handleStartStop = () => {
     if (startStop === START) {
@@ -129,6 +130,8 @@ const Timer = (props) => {
     if (startStop === PAUSE) handleStartStop();
     props.reset();
     if (sessionMin !== props.sessionLength) resetSession();
+    beepAudio.current.pause();
+    beepAudio.current.currentTime = 0;
   };
 
   const resetSession = () => {
@@ -158,7 +161,11 @@ const Timer = (props) => {
     if (props.timerType === SESSION) {
       let myInterval = setInterval(() => {
         if (sessionSec > 0) {
-          setSessionSec(sessionSec - 1);
+          let newSessionSec = sessionSec - 1;
+          if (newSessionSec === 0 && sessionMin === 0) {
+            beepAudio.current.play();
+          }
+          setSessionSec(newSessionSec);
         }
         if (sessionSec === 0) {
           if (sessionMin === 0) {
@@ -182,7 +189,11 @@ const Timer = (props) => {
       //break starts here
       let myInterval = setInterval(() => {
         if (breakSec > 0) {
-          setBreakSec(breakSec - 1);
+          let newBreakSec = breakSec - 1;
+          if (newBreakSec === 0 && breakMin === 0) {
+            beepAudio.current.play();
+          }
+          setBreakSec(newBreakSec);
         }
         if (breakSec === 0) {
           if (breakMin === 0) {
@@ -229,6 +240,12 @@ const Timer = (props) => {
           RESET
         </button>
       </div>
+      <audio
+        id="beep"
+        preload="auto"
+        ref={beepAudio}
+        src="https://raw.githubusercontent.com/freeCodeCamp/cdn/master/build/testable-projects-fcc/audio/BeepSound.wav"
+      />
     </div>
   );
 };
