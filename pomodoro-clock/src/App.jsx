@@ -1,15 +1,21 @@
 import "./App.scss";
 import { useState, useEffect } from "react";
 
+const SESSION = "SESSION";
+const BREAK = "BREAK";
+const START = "START";
+const PAUSE = "PAUSE";
+
 const App = () => {
   const [breakLength, setBreakLength] = useState(5);
   const [sessionLength, setSessionLength] = useState(25);
-  const [timerType, setTimerType] = useState("SESSION");
+  const [timerType, setTimerType] = useState(SESSION);
   const [timerStatus, setTimerStatus] = useState(false);
 
   const reset = () => {
     setBreakLength(5);
     setSessionLength(25);
+    setTimerType(SESSION);
   };
 
   const incrementBreak = () =>
@@ -27,6 +33,8 @@ const App = () => {
   const changeTimerStatus = () =>
     setTimerStatus(timerStatus === false ? true : false);
 
+  const changeTimerType = (type) => setTimerType(type);
+
   return (
     <div id="container">
       <div id="title">25 + 5 clock</div>
@@ -42,6 +50,7 @@ const App = () => {
       <Timer
         reset={reset}
         timerType={timerType}
+        changeTimerType={changeTimerType}
         breakLength={breakLength}
         sessionLength={sessionLength}
         changeTimerStatus={changeTimerStatus}
@@ -100,68 +109,107 @@ const Config = (props) => {
 };
 
 const Timer = (props) => {
-  const [startStop, setStartStop] = useState("START");
+  const [startStop, setStartStop] = useState(START);
   const [sessionMin, setSessionMin] = useState(props.sessionLength);
   const [sessionSec, setSessionSec] = useState(0);
   const [breakMin, setBreakMin] = useState(props.breakLength);
   const [breakSec, setBreakSec] = useState(0);
 
   const handleStartStop = () => {
-    if (startStop === "START") {
-      setStartStop("PAUSE");
+    if (startStop === START) {
+      setStartStop(PAUSE);
       props.changeTimerStatus();
     } else {
-      setStartStop("START");
+      setStartStop(START);
       props.changeTimerStatus();
     }
   };
 
   const handleReset = () => {
-    if (startStop === "PAUSE") handleStartStop();
+    if (startStop === PAUSE) handleStartStop();
     props.reset();
-    if (sessionMin != props.sessionLength) resetSession();
+    if (sessionMin !== props.sessionLength) resetSession();
   };
 
   const resetSession = () => {
     setSessionMin(props.sessionLength);
     setSessionSec(0);
+    setBreakMin(props.breakLength);
+    setBreakSec(0);
   };
 
   useEffect(() => {
-    if (startStop === "START") {
-      resetSession();
+    if (startStop === START) {
+      setSessionMin(props.sessionLength);
+      setSessionSec(0);
     }
     // eslint-disable-line react-hooks/exhaustive-deps
   }, [props.sessionLength]);
 
   useEffect(() => {
-    let myInterval = setInterval(() => {
-      if (sessionSec > 0) {
-        setSessionSec(sessionSec - 1);
-      }
-      if (sessionSec === 0) {
-        if (sessionMin === 0) {
-          clearInterval(myInterval);
-        } else {
-          setSessionMin(sessionMin - 1);
-          setSessionSec(59);
-        }
-      }
-    }, 1000);
-    if (startStop === "START") {
-      clearInterval(myInterval);
-      return;
+    if (startStop === START) {
+      setBreakMin(props.breakLength);
+      setBreakSec(0);
     }
-    return () => {
-      clearInterval(myInterval);
-    };
+    // eslint-disable-line react-hooks/exhaustive-deps
+  }, [props.breakLength]);
+
+  useEffect(() => {
+    if (props.timerType === SESSION) {
+      let myInterval = setInterval(() => {
+        if (sessionSec > 0) {
+          setSessionSec(sessionSec - 1);
+        }
+        if (sessionSec === 0) {
+          if (sessionMin === 0) {
+            clearInterval(myInterval);
+            resetSession();
+            props.changeTimerType(BREAK);
+          } else {
+            setSessionMin(sessionMin - 1);
+            setSessionSec(59);
+          }
+        }
+      }, 1000);
+      if (startStop === "START") {
+        clearInterval(myInterval);
+        return;
+      }
+      return () => {
+        clearInterval(myInterval);
+      };
+    } else {
+      //break starts here
+      let myInterval = setInterval(() => {
+        if (breakSec > 0) {
+          setBreakSec(breakSec - 1);
+        }
+        if (breakSec === 0) {
+          if (breakMin === 0) {
+            clearInterval(myInterval);
+            resetSession();
+            props.changeTimerType(SESSION);
+          } else {
+            setBreakMin(breakMin - 1);
+            setBreakSec(59);
+          }
+        }
+      }, 1000);
+      if (startStop === "START") {
+        clearInterval(myInterval);
+        return;
+      }
+      return () => {
+        clearInterval(myInterval);
+      };
+    }
   });
 
   return (
     <div>
       <div id="timer">
         <div id="timer-label">{props.timerType}</div>
-        {props.timerType === "SESSION" ? (
+        {props.timerType === SESSION ? (
           <div id="time-left">
             {sessionMin < 10 ? `0${sessionMin}` : sessionMin}:
             {sessionSec < 10 ? `0${sessionSec}` : sessionSec}
